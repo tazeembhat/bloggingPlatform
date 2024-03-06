@@ -8,6 +8,9 @@ const blogRouter = new Hono<{
     Bindings: {
         DATABASE_URL: string;
         JWT_SECRET: string;
+    },
+    Variables: {
+      userId: string
     }
 }>
 
@@ -26,7 +29,6 @@ blogRouter.use('*', async (c, next)=>{
     try{
       const verified = await verify(token, c.env.JWT_SECRET);
       if(verified){
-         //@ts-ignore
         c.set('userId', verified.id);
       }
       else{
@@ -51,7 +53,6 @@ blogRouter.post('/', async (c) => {
     datasourceUrl: c.env.DATABASE_URL
   }).$extends(withAccelerate());
 
-  //@ts-ignore
   const userId = c.get('userId');
   console.log(userId)
   const payload = await c.req.json();
@@ -81,7 +82,7 @@ blogRouter.put('/', async (c) => {
   const prisma = new PrismaClient({
     datasourceUrl: c.env.DATABASE_URL
   }).$extends(withAccelerate());
-  //@ts-ignore
+
   const userId = c.get('userId');
   const payload = await c.req.json();
 
