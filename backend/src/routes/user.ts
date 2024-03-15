@@ -44,7 +44,7 @@ userRouter.post('/signup', async (c) => {
   catch(err){
     console.log(err);
     c.status(403);
-    return c.json({error: "error while signing up"});
+    return c.json({message: "Error while signing up"});
   }
 })
 
@@ -69,17 +69,18 @@ userRouter.post('/signin', async (c) => {
       AND: [{email: payload.email}, {password: payload.password}]
     },
     select: {
-      id: true
+      id: true,
+      name: true
     }
   });
   
   if(!user){
     c.status(404);
-    return c.json({error: "User does not exist"});
+    return c.json({message: "User does not exist"});
   }
 
   const token = await sign({id: user.id}, c.env.JWT_SECRET);
-  return c.json({token});
+  return c.json({token, name: user.name});
 })
 
 export default userRouter

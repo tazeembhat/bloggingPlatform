@@ -48,7 +48,7 @@ blogRouter.use('*', async (c, next)=>{
     await next();
   });
 
-blogRouter.post('/', async (c) => {
+blogRouter.post('/publish', async (c) => {
   const prisma = new PrismaClient({
     datasourceUrl: c.env.DATABASE_URL
   }).$extends(withAccelerate());
@@ -78,7 +78,7 @@ blogRouter.post('/', async (c) => {
   })
 })
 
-blogRouter.put('/', async (c) => {
+blogRouter.put('/update', async (c) => {
   const prisma = new PrismaClient({
     datasourceUrl: c.env.DATABASE_URL
   }).$extends(withAccelerate());
@@ -118,13 +118,51 @@ blogRouter.put('/', async (c) => {
   
 });
 
-blogRouter.get('/bulk', async (c) => {
+blogRouter.get('blogs/bulk', async (c) => {
   const prisma = new PrismaClient({
     datasourceUrl: c.env.DATABASE_URL 
   }).$extends(withAccelerate());
 
-  const posts = await prisma.post.findMany();
-  console.log(posts )
+  const posts = await prisma.post.findMany({
+    select: {
+      id: true,
+      title: true,
+      content: true,
+      postDate: true,
+      author : {
+        select : {
+          name: true
+        }
+      }
+    }
+  });
+  
+  return c.json(posts);
+})
+
+blogRouter.get('/myblogs', async (c) => {
+  const prisma = new PrismaClient({
+    datasourceUrl: c.env.DATABASE_URL
+  }).$extends(withAccelerate());
+
+  const userId = c.get('userId');
+  const posts = await prisma.post.findMany({
+    where: {
+      authorId: userId
+    },
+    select: {
+      id: true,
+      title: true,
+      content: true,
+      postDate: true,
+      author : {
+        select : {
+          name: true
+        }
+      }
+    }
+  })
+
   return c.json(posts);
 })
 
@@ -134,14 +172,43 @@ blogRouter.get('/:id', async (c) => {
   }).$extends(withAccelerate());
 
   const postId = c.req.param('id');
+ 
   const post = await prisma.post.findUnique({
     where: {
       id: postId
+    },
+    select: {
+      id: true,
+      title: true,
+      content: true,
+      postDate: true,
+      author : {
+        select : {
+          name: true
+        }
+      }
     }
   })
 
   return c.json(post)
 })
 
+blogRouter.delete('/delete', async (c) => {
+  const prisma = new PrismaClient({
+    datasourceUrl: c.env.DATABASE_URL
+  }).$extends(withAccelerate());
+
+  const postId = c.req.header('postId');
+
+  await prisma.post.delete({
+    where : {
+      id: postId
+    }
+  });
+
+  return c.json({
+    message: "Post Deleted"
+  });
+})
 
 export default blogRouter

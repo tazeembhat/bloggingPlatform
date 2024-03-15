@@ -1,1 +1,1 @@
-A Platform where users can post blogs.
+PixelPost - A Platform where users can post blogs.
