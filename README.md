@@ -9,6 +9,6 @@
 - React
 - TailwindCSS
 
-**Deployment**:
+#### Deployment:
 - Vercel (FrontEnd)
 - Cloudflare Workers (Backend)
