@@ -1,4 +1,4 @@
-**PixelPost** - A Platform where users can post blogs.
+## PixelPost ## - A Platform where users can post blogs.
 
 **Tech Stack**:
     *TypeScript
