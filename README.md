@@ -1,6 +1,6 @@
 ## PixelPost - A Platform where users can post blogs.
 
-## Tech Stack ##:
+## Tech Stack:
     *TypeScript
     *NodeJs
     *Hono
