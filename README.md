@@ -2,13 +2,13 @@
 
 ## Tech Stack:
 - TypeScript
-    * `NodeJs`
-    -     Hono
-    -     PostgreSQL
-    -     Prism ORM
-    -     React
-    -     TailwindCSS
+- NodeJs
+- Hono
+- PostgreSQL
+- Prism ORM
+- React
+- TailwindCSS
 
 **Deployment**:
-    *Vercel (FrontEnd)
-    *Cloudflare Workers (Backend)
+- Vercel (FrontEnd)
+- Cloudflare Workers (Backend)
