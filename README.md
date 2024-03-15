@@ -7,9 +7,9 @@
         <li>TypeScript</li>
         <li>TypeScript</li>
         <li>TypeScript</li>
-        <li>TypeScript</li>
+        <li>`TypeScript`</li>
     </ul>
-    -     NodeJs
+    - `NodeJs`
     -     Hono
     -     PostgreSQL
     -     Prism ORM
