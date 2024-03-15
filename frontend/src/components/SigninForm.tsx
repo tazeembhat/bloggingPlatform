@@ -5,7 +5,6 @@ import { Inputbox } from "./Inputbox";
 import { SubHeading } from "./SubHeading";
 import { SigninInput } from "@tazeembhat/blog-common";
 import axios from "axios";
-import { BACKEND_URL } from "../config";
 import { useNavigate } from "react-router-dom";
 
 export function AuthSignin(){
@@ -16,7 +15,7 @@ export function AuthSignin(){
     })
 
     async function signinHandler(){
-        const response = await axios.post(`${BACKEND_URL}/api/v1/user/signin`, postInputs)
+        const response = await axios.post(`${process.env.BACKEND_URL}/api/v1/user/signin`, postInputs)
         .catch((error)=>{
             const msg = error.response.data.message;
             navigate(`/messagefailure/?msg=${msg}`);

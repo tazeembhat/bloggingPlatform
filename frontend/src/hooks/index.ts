@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { BACKEND_URL } from "../config";
 
 export interface BlogType {
     title: string,
@@ -18,7 +17,7 @@ export function useBlog({id}: {id: string}){
     const [blog, setBlog] = useState<BlogType>();
     
     useEffect(()=>{
-        axios.get(`${BACKEND_URL}/api/v1/blog/${id}`, {
+        axios.get(`${process.env.BACKEND_URL}/api/v1/blog/${id}`, {
             headers : {
                 Authorization: `Bearer ${localStorage.getItem('token')}`
             }
@@ -40,7 +39,7 @@ export function useBlogs(){
     const [blogs, setBlogs] = useState<BlogType[]>([]);
 
     useEffect(()=>{
-        axios.get(`${BACKEND_URL}/api/v1/blog/blogs/bulk`, {
+        axios.get(`${process.env.BACKEND_URL}/api/v1/blog/blogs/bulk`, {
             headers : {
                 Authorization: `Bearer ${localStorage.getItem('token')}`
             }
@@ -62,7 +61,7 @@ export function useMyBlogs(){
     const [myblogs, setBlogs] = useState<BlogType[]>([]);
 
     useEffect(()=>{
-        axios.get(`${BACKEND_URL}/api/v1/blog/myblogs`, {
+        axios.get(`${process.env.BACKEND_URL}/api/v1/blog/myblogs`, {
             headers : {
                 Authorization: `Bearer ${localStorage.getItem('token')}`
             }

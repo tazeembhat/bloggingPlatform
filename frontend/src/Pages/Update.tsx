@@ -3,7 +3,6 @@ import { Avatar } from "../components/Avatar";
 import { useState } from "react";
 import { UpdateBlogInput } from "@tazeembhat/blog-common";
 import axios from "axios";
-import { BACKEND_URL } from "../config";
 import { useBlog } from "../hooks";
 import { UpdateSkeleton } from "../components/BlogSkeleton";
 
@@ -30,7 +29,7 @@ export function UpdateBlog(){
             return;
         }
         
-        const response = await axios.put(`${BACKEND_URL}/api/v1/blog/update`, inputs, {
+        const response = await axios.put(`${process.env.BACKEND_URL}/api/v1/blog/update`, inputs, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}` 
             }
@@ -114,7 +113,7 @@ function Delete({ postId }: {postId: string}){
     const token = localStorage.getItem('token');
 
     async function deleteHandler() {
-        const response: any = await axios.delete(`${BACKEND_URL}/api/v1/blog/delete`, {
+        const response: any = await axios.delete(`${process.env.BACKEND_URL}/api/v1/blog/delete`, {
             headers: {
                 Authorization: `Bearer ${token}`,
                 postId
