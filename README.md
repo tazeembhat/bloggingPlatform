@@ -1,14 +1,14 @@
-**PixelPost** - A Platform where users can post blogs.
+## PixelPost - A Platform where users can stories.
 
-**Tech Stack**:
-    * TypeScript
-    * NodeJs
-    * Hono
-    * PostgreSQL
-    * Prism ORM
-    * React
-    * TailwindCSS
+## Tech Stack:
+- TypeScript
+- NodeJs
+- Hono
+- PostgreSQL
+- Prism ORM
+- React
+- TailwindCSS
 
-**Deployment**:
-    * Vercel (FrontEnd)
-    * Cloudflare Workers (Backend)
+#### Deployment:
+- Vercel (FrontEnd)
+- Cloudflare Workers (Backend)
