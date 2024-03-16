@@ -53,7 +53,7 @@ export function AuthSignup(){
                         email: e.target.value
                     }))
                 }} />
-                <Inputbox inputType="password" inputLabel="Password" phLabel="***********" func={(e)=>{
+                <Inputbox inputType="password" inputLabel="Password" phLabel="Min 6 Characters" func={(e)=>{
                     setPostInputs(c => ({
                         ...c,
                         password: e.target.value
