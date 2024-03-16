@@ -6,6 +6,7 @@ import { SubHeading } from "./SubHeading";
 import { SignupInput } from "@tazeembhat/blog-common";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+const env = import.meta.env;
 
 export function AuthSignup(){
     const navigate = useNavigate();
@@ -16,7 +17,7 @@ export function AuthSignup(){
     })
 
     async function signupHandler(){
-        const response = await axios.post(`${process.env.BACKEND_URL}/api/v1/user/signup`, postInputs)
+        const response = await axios.post(`${env.VITE_BACKEND_URL}/api/v1/user/signup`, postInputs)
         .catch((error)=>{
             const msg = error.response.data.message;
             navigate(`/messagefailure/?msg=${msg}`);

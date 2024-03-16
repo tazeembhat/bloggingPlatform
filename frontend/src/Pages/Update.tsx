@@ -5,6 +5,7 @@ import { UpdateBlogInput } from "@tazeembhat/blog-common";
 import axios from "axios";
 import { useBlog } from "../hooks";
 import { UpdateSkeleton } from "../components/BlogSkeleton";
+const env = import.meta.env
 
 export function UpdateBlog(){
     const [searchParams] = useSearchParams();
@@ -29,7 +30,7 @@ export function UpdateBlog(){
             return;
         }
         
-        const response = await axios.put(`${process.env.BACKEND_URL}/api/v1/blog/update`, inputs, {
+        const response = await axios.put(`${env.VITE_BACKEND_URL}/api/v1/blog/update`, inputs, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}` 
             }
@@ -113,7 +114,7 @@ function Delete({ postId }: {postId: string}){
     const token = localStorage.getItem('token');
 
     async function deleteHandler() {
-        const response: any = await axios.delete(`${process.env.BACKEND_URL}/api/v1/blog/delete`, {
+        const response: any = await axios.delete(`${env.VITE_BACKEND_URL}/api/v1/blog/delete`, {
             headers: {
                 Authorization: `Bearer ${token}`,
                 postId

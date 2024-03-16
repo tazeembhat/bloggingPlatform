@@ -3,7 +3,7 @@ import { Avatar } from "../components/Avatar";
 import { useState } from "react";
 import { CreateBlogInput } from "@tazeembhat/blog-common";
 import axios from "axios";
-import { BACKEND_URL } from "../config";
+const env = import.meta.env;
 
 export function Publish(){
     const [inputs, setInputs] = useState<CreateBlogInput>({
@@ -19,7 +19,7 @@ export function Publish(){
             return;
         }
         
-        const response = await axios.post(`${BACKEND_URL}/api/v1/blog/publish`, inputs, {
+        const response = await axios.post(`${env.VITE_BACKEND_URL}/api/v1/blog/publish`, inputs, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}` 
             }

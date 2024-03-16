@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+const env = import.meta.env;
 
 export interface BlogType {
     title: string,
@@ -17,7 +18,7 @@ export function useBlog({id}: {id: string}){
     const [blog, setBlog] = useState<BlogType>();
     
     useEffect(()=>{
-        axios.get(`${process.env.BACKEND_URL}/api/v1/blog/${id}`, {
+        axios.get(`${env.VITE_BACKEND_URL}/api/v1/blog/${id}`, {
             headers : {
                 Authorization: `Bearer ${localStorage.getItem('token')}`
             }
@@ -39,7 +40,7 @@ export function useBlogs(){
     const [blogs, setBlogs] = useState<BlogType[]>([]);
 
     useEffect(()=>{
-        axios.get(`${process.env.BACKEND_URL}/api/v1/blog/blogs/bulk`, {
+        axios.get(`${env.VITE_BACKEND_URL}/api/v1/blog/blogs/bulk`, {
             headers : {
                 Authorization: `Bearer ${localStorage.getItem('token')}`
             }
@@ -61,7 +62,7 @@ export function useMyBlogs(){
     const [myblogs, setBlogs] = useState<BlogType[]>([]);
 
     useEffect(()=>{
-        axios.get(`${process.env.BACKEND_URL}/api/v1/blog/myblogs`, {
+        axios.get(`${env.VITE_BACKEND_URL}/api/v1/blog/myblogs`, {
             headers : {
                 Authorization: `Bearer ${localStorage.getItem('token')}`
             }

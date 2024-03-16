@@ -7,8 +7,6 @@ import { MessageFailure, MessageSuccess } from "./components/Message";
 import { Publish } from "./Pages/Publish";
 import { MyBlogs } from "./Pages/Myblogs";
 import { UpdateBlog } from "./Pages/Update";
-require('dotenv').config()
-
 
 function App() {
 
