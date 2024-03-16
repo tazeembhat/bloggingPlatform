@@ -14,4 +14,4 @@
 - Cloudflare Workers (Backend)
 
 #### Link:
-  [PixelPost](https://pixelpost.vercel.app)
+  [PixelPost](https://pixelpost.vercel.app){:target="_blank"}
